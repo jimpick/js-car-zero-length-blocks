@@ -7,7 +7,7 @@ import { sha256 } from 'multiformats/hashes/sha2'
 import delay from 'delay'
 import minimist from 'minimist'
 
-const argv = minimist(process.argv.slice(2))
+const argv = minimist(process.argv.slice(2), { boolean: [ 'skip-write' ] })
 
 if (
   !(
@@ -15,15 +15,23 @@ if (
     (argv['empty-block'] === 'true' || argv['empty-block'] === 'false')
   )
 ) {
-  console.log(`Usage: node car-test.mjs --car-file=true|false --empty-block=true|false`)
+  console.log(`Usage: node car-test.mjs --empty-block=true|false --car-file=true|false [--skip-write]`)
   process.exit(1)
 }
 
 const carFile = argv['car-file'] === 'true'
 const emptyBlock = argv['empty-block'] === 'true'
+const skipWrite = argv['skip-write']
+const filename = emptyBlock ? 'example-empty.car' : 'example.car'
 
-console.log('Use .car file:', carFile)
 console.log('Insert empty block:', emptyBlock)
+console.log('Use .car file:', carFile)
+if (carFile) {
+  console.log('Filename:', filename)
+  console.log('Skip write:', skipWrite)
+}
+console.log()
+
 
 async function run () {
 
@@ -49,7 +57,7 @@ async function run () {
 
     async function write () {
       if (carFile) {
-        Readable.from(out).pipe(fs.createWriteStream('example.car'))
+        Readable.from(out).pipe(fs.createWriteStream(filename))
       }
 
       writer.put({ cid: cidA, bytes: bytesA })
@@ -74,7 +82,7 @@ async function run () {
 
       if (carFile) {
         await delay(1000)
-        const inStream = fs.createReadStream('example.car')
+        const inStream = fs.createReadStream(filename)
         reader = await CarReader.fromIterable(inStream)
       } else {
         reader = await CarReader.fromIterable(out)
@@ -93,7 +101,9 @@ async function run () {
     }
 
     read()
-    write()
+    if (!skipWrite) {
+      write()
+    }
   } catch (e) {
     console.error('Exception', e)
   }

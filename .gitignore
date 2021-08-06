@@ -1,4 +1,4 @@
 *.swp
 node_modules
-example.car
+*.car
 yarn.lock
