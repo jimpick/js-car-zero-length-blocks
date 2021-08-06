@@ -37,6 +37,16 @@ cborg@^1.2.1:
   resolved "https://registry.yarnpkg.com/cborg/-/cborg-1.4.0.tgz#8042e0ee2a2fc206f4061a7235be9eff168e0fa1"
   integrity sha512-PY0n1opfxQ93jj8rgQ7emri/0R9mEvNi+0qnxzMQG5Qc1U/NmxcEdyIgcV1eifjGWwqro1cx3fbDgZ66bwfMHQ==
 
+delay@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/delay/-/delay-5.0.0.tgz#137045ef1b96e5071060dd5be60bf9334436bd1d"
+  integrity sha512-ReEBKkIfe4ya47wlPYf/gu5ib6yUG0/Aez0JQZQz94kiWtRQvZIQbTiehsnwHvLSWJnQdhVeqYue7Id1dKr0qw==
+
+minimist@^1.2.5:
+  version "1.2.5"
+  resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.5.tgz#67d66014b66a6a8aaa0c083c5fd58df4e4e97602"
+  integrity sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw==
+
 multiformats@^9.0.0:
   version "9.4.4"
   resolved "https://registry.yarnpkg.com/multiformats/-/multiformats-9.4.4.tgz#a4e7181705c8e4c8ec2fd62e08a31526697f2503"

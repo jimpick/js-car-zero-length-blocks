@@ -10,6 +10,8 @@
   "author": "Jim Pick (@jimpick)",
   "license": "MIT/Apache-2 (Permissive License Stack)",
   "dependencies": {
-    "@ipld/car": "^3.1.11"
+    "@ipld/car": "^3.1.11",
+    "delay": "^5.0.0",
+    "minimist": "^1.2.5"
   }
 }
