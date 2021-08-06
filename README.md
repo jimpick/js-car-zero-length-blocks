@@ -3,6 +3,8 @@ js-car-zero-length-blocks
 
 Debugging why @ipld/car is failing with car files that contain zero length files/blocks.
 
+* https://github.com/ipld/js-car/issues/46
+
 # Usage
 
 ```
