@@ -60,21 +60,21 @@ async function run () {
         Readable.from(out).pipe(fs.createWriteStream(filename))
       }
 
-      writer.put({ cid: cidA, bytes: bytesA })
+      await writer.put({ cid: cidA, bytes: bytesA })
       console.log('Put cidA', cidA, bytesA)
       await delay(1000)
 
       if (emptyBlock) {
-        writer.put({ cid: cidB, bytes: bytesB })
+        await writer.put({ cid: cidB, bytes: bytesB })
         console.log('Put cidB', cidB, bytesB)
         await delay(1000)
       }
 
-      writer.put({ cid: cidC, bytes: bytesC })
+      await writer.put({ cid: cidC, bytes: bytesC })
       console.log('Put cidC', cidC, bytesC)
       await delay(1000)
 
-      writer.close()
+      await writer.close()
     }
 
     async function read () {
@@ -100,10 +100,10 @@ async function run () {
       console.log('Got cidC', blockC, blockC === undefined ? 'WRONG!!' : '')
     }
 
-    read()
     if (!skipWrite) {
-      write()
+      await write()
     }
+    await read()
   } catch (e) {
     console.error('Exception', e)
   }
